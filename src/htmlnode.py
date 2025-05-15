@@ -34,7 +34,7 @@ class ParentNode(HTMLNode):
     def to_html(self):
         if self.tag is None:
             raise ValueError("Tag is required")
-        if self.children is None or len(self.children) == 0:
+        if self.children is None:
             raise ValueError("Children is Required and cannot be Empty")
         inner_html = "".join(child.to_html() for child in self.children)
         return f"<{self.tag}{self.props_to_html()}>{inner_html}</{self.tag}>"
