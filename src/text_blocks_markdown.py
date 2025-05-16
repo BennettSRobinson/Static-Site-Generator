@@ -11,6 +11,13 @@ class BlockType(Enum):
     OLIST = "ordered list"
     ULIST = "unordered list"
 
+def extract_title(markdown):
+    lines = markdown.split("\n")
+    for line in lines:
+        if re.match(r"^#[^#]", line):
+            return line[2:].strip()
+    raise ValueError("cannot find title")
+
 def markdown_to_blocks(markdown):
     blocks = markdown.strip().split("\n\n")
     new_blocks = []
